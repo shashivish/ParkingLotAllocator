@@ -4,10 +4,12 @@ package com.gojek.parking;
  * Hello world!
  *
  */
-public class App 
+public class ParkinglotAllocator 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        
+    	
+    	
     }
 }
