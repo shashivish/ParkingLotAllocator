@@ -9,7 +9,7 @@ Functional Requirement :
 
 Before we begin with implementation , we will make couple of assumptions for defining boudary for problem.
 
-1. Only Cat as Vehical allowed for Parking.
+1. Only Car as Vehical allowed for Parking.
 2. Single Floor is available for Parking with limited space.
 3. Only Car color and Registration number is used for grating ticket.
 
