@@ -1,16 +1,13 @@
 package com.gojek.parking;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
 
-import com.gojek.parking.doa.Car;
 import com.gojek.parking.exception.ParkingLotException;
+import com.gojek.parking.helper.ProcessCommandLineArguments;
 
 
 /**
@@ -33,6 +30,7 @@ public class ParkinglotAllocator
 		if (args.length ==0 )
 		{
 
+			ProcessCommandLineArguments processCommandLineArgument = new ProcessCommandLineArguments();
 			/**
 			 * Keep interactive mode alive.
 			 */
@@ -42,30 +40,18 @@ public class ParkinglotAllocator
 
 
 					log.info("Please Enter New Action");
-					Scanner inputScanner = new Scanner(System.in);
-					String inputCommand = inputScanner.next();
+					BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+                    String inputCommand = bufferRead.readLine();
 
 					if(inputCommand.toLowerCase().equals("exit"))
 					{
 						log.info("Go Jek Parking Programm Terminating. Bye.");
 						break;
 					}
-					if(inputCommand == "")
-					{
-						//Do Nothing
-					}
 					else
 					{
 						log.info(inputCommand);
-
-
-
-						/**
-						 * Write Logic Here
-						 */
-
-
-
+						processCommandLineArgument.ProcessCommandLineArguments(inputCommand);
 					}
 				}
 
