@@ -5,3 +5,12 @@
 #
 # After this is run, bin/parking_lot
 # should Just Work.
+
+echo "---------------------------------"
+echo "Compiling Parking Lot Allocator "
+
+cd parkingAllocator
+mvn clean install package 
+
+echo "Parking Lot is ready for execution."
+

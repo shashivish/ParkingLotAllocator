@@ -23,6 +23,9 @@ Technical Requirement :
 
 Execution :
 
-//Placeholder
-
+// Execute below command for compiling program
+setup
  
+//Execute below steps for triggering parking lot allocator
+parking_lot
+

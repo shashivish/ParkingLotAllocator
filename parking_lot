@@ -5,4 +5,4 @@
 
 parkingLotFile=$1
 
-java -jar ParkingLotAllocator/parkingAllocator/target/parkingAllocator-1.0-SNAPSHOT-jar-with-dependencies.jar file_inputs.txt
+java -jar parkingAllocator/target/parkingAllocator-1.0-SNAPSHOT-jar-with-dependencies.jar $parkingLotFile
