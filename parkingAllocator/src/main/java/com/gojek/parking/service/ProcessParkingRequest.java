@@ -15,8 +15,19 @@ public class ProcessParkingRequest {
 
 	final static Logger log = Logger.getLogger(ProcessParkingRequest.class);
 
-	//Creatr Parking Space Object Holder
+	/**
+	 * Create Parking Space Holder - HashMap
+	 */
 	static Map<Integer,Car> PARKINGSPACEHOLDER  = new HashMap<Integer, Car>();
+
+
+	/**
+	 * Empty Constructor
+	 */
+	public ProcessParkingRequest()
+	{
+		//Do Nothing
+	}
 
 
 	/**
@@ -51,15 +62,29 @@ public class ProcessParkingRequest {
 		{
 			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
 
+
+			/**
+			 * Check which Parking Space is empty
+			 */
 			if(parkingInformation.getValue()  == null)
 			{
+
+				/**
+				 * Create a Car Object
+				 */
 				Car car = new Car();
 				car.setCarColor(vehicleColor);
 				car.setCarRegistrationNumber(registratioNumber);
+
+
+				/**
+				 * Park a Car in a Empty Parking Space
+				 */
 				PARKINGSPACEHOLDER.put(parkingInformation.getKey(), car);
 				checkParkingSpaceIsFull = true;
 				log.info("Allocated slot number : " + parkingInformation.getKey());
 				break;
+
 			}
 
 		}
@@ -79,8 +104,7 @@ public class ProcessParkingRequest {
 	public void removeParkedVehicle(int parkingSlotNumber)
 	{
 
-		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
-		boolean checkParkingSpaceIsFull = false;
+		Iterator<Entry<Integer, Car>> parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
 
 		while(parkingItr.hasNext())
 		{
@@ -103,9 +127,13 @@ public class ProcessParkingRequest {
 	public void getParkingStatus()
 	{
 
-		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
+		Iterator<Entry<Integer, Car>> parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
 		System.out.println("Slot Number \t\t Registration Number \t\t Color ");
 		boolean checkIfParkingAreaIsEmpty = true;
+		
+		/**
+		 * Iterator to List all occupied Parking Slot
+		 */
 		while(parkingItr.hasNext())
 		{
 			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
@@ -126,10 +154,14 @@ public class ProcessParkingRequest {
 	}
 
 
+	/**
+	 *  Get Registration number by color
+	 * @param color
+	 */
 	public void getRegistrationNumberByColor(String color)
 	{
 
-		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
+		Iterator<Entry<Integer, Car>> parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
 		String registration_numbers_for_cars_with_colour = "";
 		while(parkingItr.hasNext())
 		{
@@ -146,7 +178,7 @@ public class ProcessParkingRequest {
 
 		if (registration_numbers_for_cars_with_colour == "") {
 			log.info("Not Vehicle for Color " + color);
-			
+
 		}
 
 		log.info( registration_numbers_for_cars_with_colour );
@@ -155,16 +187,23 @@ public class ProcessParkingRequest {
 	}
 
 
+	/**
+	 * Get Slot number by Color
+	 * @param color
+	 */
 	public void getSlotsNumberbyColor(String color)
 	{
 
-		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
+		Iterator<Entry<Integer, Car>> parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
 		String slot_numbers_for_cars_with_colour = "";
 		while(parkingItr.hasNext())
 		{
 			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
 			if(parkingInformation.getValue() != null)
 			{
+				/**
+				 * Check if Color is matching with requested color
+				 */
 				if (parkingInformation.getValue().getCarColor().toString().equals(color))
 				{
 					slot_numbers_for_cars_with_colour = slot_numbers_for_cars_with_colour + " " + parkingInformation.getKey() + ",";
@@ -173,20 +212,30 @@ public class ProcessParkingRequest {
 
 		}
 
+		/**
+		 * If No color match is found
+		 */
 		if (slot_numbers_for_cars_with_colour == "") {
 			log.info("Slot not found for Color " + color);
-		
-		}
 
-		log.info( slot_numbers_for_cars_with_colour);
+		}
+		else
+			log.info( "Found  : " +slot_numbers_for_cars_with_colour);
 
 
 	}
 
+
+	/**
+	 * Get Slot Number by Registration number
+	 * @param carRegistrationNubmer
+	 */
 	public void  getSlotNumberByRegistrationNumber(String carRegistrationNubmer)
 	{
-		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
+		Iterator<Entry<Integer, Car>> parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
 		int slot_number_for_registration_number = 0;
+		
+		
 		while(parkingItr.hasNext())
 		{
 			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
@@ -202,15 +251,12 @@ public class ProcessParkingRequest {
 
 		if (slot_number_for_registration_number == 0) {
 			log.info("No Vehicle for Registration Number  " + carRegistrationNubmer);
-			
+
 		}
 		else	
-		log.info (slot_number_for_registration_number);
+			log.info ("Found : " +slot_number_for_registration_number);
 
 	}
-
-
-
 
 
 

@@ -152,6 +152,12 @@ public class ProcessCommandLineArguments {
 
 	}
 
+	/**
+	 * Function to Parse Input File
+	 * @param filePath
+	 * @throws NumberFormatException
+	 * @throws ParkingLotException
+	 */
 	public void commandLineFileParser(String filePath) throws NumberFormatException, ParkingLotException
 	{
 

@@ -29,48 +29,59 @@ public class ParkinglotAllocator
 		/**
 		 * Check with Interactive or File approach is required to Solve problem. 	
 		 */
-		if (args.length ==0 )
+
+		try
 		{
-
-
-			/**
-			 * Keep interactive mode alive.
-			 */
-			while(true)
+			if (args.length ==0 )
 			{
-				try {
 
 
-					log.info("Please Enter New Action");
-					BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-					String inputCommand = bufferRead.readLine();
-
-					if(inputCommand.toLowerCase().equals("exit"))
-					{
-						log.info("Go Jek Parking Programm Terminating. Bye.");
-						break;
-					}
-					else
-					{
-						processCommandLineArgument.ProcessCommandLineArguments(inputCommand);
-					}
-				}
-
-				catch (Exception e)
+				/**
+				 * Keep interactive mode alive.
+				 */
+				while(true)
 				{
-					throw new ParkingLotException("Unkown Exception Occured. Please contact Administartor" + e.getMessage());
+					try {
+
+
+						log.info("Please Enter New Action");
+						BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+						String inputCommand = bufferRead.readLine();
+
+						if(inputCommand.toLowerCase().equals("exit"))
+						{
+							log.info("Go Jek Parking Programm Terminating. Bye.");
+							break;
+						}
+						else
+						{
+							processCommandLineArgument.ProcessCommandLineArguments(inputCommand);
+						}
+					}
+
+					catch (Exception e)
+					{
+						throw new ParkingLotException("Unkown Exception Occured. Please contact Administartor" + e.getMessage());
+					}
 				}
+
+
 			}
-
-
+			else
+			{
+				/**
+				 * Process Parking Lot Based on File Input
+				 */
+				processCommandLineArgument.commandLineFileParser(args[0]);
+			}
 		}
-		else
+		catch(Exception e)
 		{
-			/**
-			 * Process Parking Lot Based on File Input
-			 */
-			processCommandLineArgument.commandLineFileParser(args[0]);
+			e.printStackTrace();
+			throw new ParkingLotException("Unkonw Exception Occured while processing . Please contact Administrator" + e.getMessage());
+
 		}
+
 
 
 	}
