@@ -13,10 +13,15 @@ import com.gojek.parking.doa.Car;
 public class ProcessParkingRequest {
 
 	final static Logger log = Logger.getLogger(ProcessParkingRequest.class);
-
+	
+	//Creatr Parking Space Object Holder
 	static Map<Integer,Car> PARKINGSPACEHOLDER  = new HashMap<Integer, Car>();
 
 
+	/**
+	 * Initialize Empty Parking Area
+	 * @param parkingLotSize
+	 */
 	public void createParkingLot(int parkingLotSize)
 	{
 		/**
@@ -25,11 +30,17 @@ public class ProcessParkingRequest {
 		for(int parkingSpaceCounter =1 ; parkingSpaceCounter <= parkingLotSize ; parkingSpaceCounter ++)
 		{
 			PARKINGSPACEHOLDER.put(parkingSpaceCounter, null);
+			log.info("Created a parking lot with "+parkingLotSize +" slots");
 
 		}
 
 	}
 
+	/**
+	 * Park New Vehicle of given Rgistration Number and Vehicle Color for Granting Ticket
+	 * @param registratioNumber
+	 * @param vehicleColor
+	 */
 	public void parkNewVehicle(String registratioNumber , String vehicleColor )
 	{
 		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
@@ -63,6 +74,10 @@ public class ProcessParkingRequest {
 
 	}
 
+	/**
+	 * Remove Parked vehicle from alloted Parking slot
+	 * @param parkingSlotNumber
+	 */
 	public void removeParkedVehicle(int parkingSlotNumber)
 	{
 
@@ -72,10 +87,6 @@ public class ProcessParkingRequest {
 		while(parkingItr.hasNext())
 		{
 			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
-
-			System.out.println("Getting Key " + parkingInformation.getKey());
-			System.out.println( "Getting value  " + parkingInformation.getValue());
-
 			if(parkingInformation.getKey()  == parkingSlotNumber)
 			{
 				PARKINGSPACEHOLDER.put(parkingInformation.getKey(), null);
