@@ -126,7 +126,7 @@ public class ProcessParkingRequest {
 	}
 
 
-	public String getRegistrationNumberByColor(String color)
+	public void getRegistrationNumberByColor(String color)
 	{
 
 		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
@@ -146,16 +146,16 @@ public class ProcessParkingRequest {
 
 		if (registration_numbers_for_cars_with_colour == "") {
 			log.info("Not Vehicle for Color " + color);
-			return "";
+			
 		}
 
-		return registration_numbers_for_cars_with_colour;
+		log.info( registration_numbers_for_cars_with_colour );
 
 
 	}
 
 
-	public String getSlotsNumberbyColor(String color)
+	public void getSlotsNumberbyColor(String color)
 	{
 
 		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
@@ -175,15 +175,15 @@ public class ProcessParkingRequest {
 
 		if (slot_numbers_for_cars_with_colour == "") {
 			log.info("Slot not found for Color " + color);
-			return "";
+		
 		}
 
-		return slot_numbers_for_cars_with_colour;
+		log.info( slot_numbers_for_cars_with_colour);
 
 
 	}
 
-	public int  getSlotNumberByRegistrationNumber(String carRegistrationNubmer)
+	public void  getSlotNumberByRegistrationNumber(String carRegistrationNubmer)
 	{
 		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
 		int slot_number_for_registration_number = 0;
@@ -202,10 +202,10 @@ public class ProcessParkingRequest {
 
 		if (slot_number_for_registration_number == 0) {
 			log.info("Not Vehicle for Registration Number  " + carRegistrationNubmer);
-			return 0;
+			
 		}
 
-		return slot_number_for_registration_number;
+		log.info (slot_number_for_registration_number);
 
 	}
 
