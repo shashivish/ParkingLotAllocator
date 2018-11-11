@@ -9,7 +9,7 @@
 echo "---------------------------------"
 echo "Compiling Parking Lot Allocator "
 
-cd ../parkingAllocator
+cd parkingAllocator
 mvn clean install package 
 
 echo "Parking Lot is ready for execution."
