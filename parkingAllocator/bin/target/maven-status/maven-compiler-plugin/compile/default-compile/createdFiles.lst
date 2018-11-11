@@ -1,6 +1,0 @@
-com/gojek/parking/helper/ProcessCommandLineArguments.class
-com/gojek/parking/exception/ParkingLotException.class
-com/gojek/parking/doa/Car.class
-com/gojek/parking/constans/ParkingLotConstants.class
-com/gojek/parking/ParkinglotAllocator.class
-com/gojek/parking/service/ProcessParkingRequest.class
