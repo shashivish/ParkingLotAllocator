@@ -30,3 +30,9 @@ bin/setup
 ```
 bin/parking_lot
 ```
+
+##### Excute with Input File to Parking Lot Program
+
+```
+bin/parking_lot file_inputs.txt
+```
