@@ -1,8 +1,13 @@
 package com.gojek.parking.helper;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
 
-import com.gojek.parking.ParkinglotAllocator;
 import com.gojek.parking.constans.ParkingLotConstants;
 import com.gojek.parking.exception.ParkingLotException;
 import com.gojek.parking.service.ProcessParkingRequest;
@@ -10,6 +15,8 @@ import com.gojek.parking.service.ProcessParkingRequest;
 public class ProcessCommandLineArguments {
 
 	final static Logger log = Logger.getLogger(ProcessCommandLineArguments.class);
+
+
 
 
 	public void ProcessCommandLineArguments(String commandLineArgument) throws NumberFormatException, ParkingLotException
@@ -143,5 +150,31 @@ public class ProcessCommandLineArguments {
 
 
 
+	}
+
+	public void commandLineFileParser(String filePath) throws NumberFormatException, ParkingLotException
+	{
+
+		
+		File inputParkingLotFile = new File(filePath);
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(inputParkingLotFile));
+			String line;
+			try {
+				while ((line = br.readLine()) != null) {
+					ProcessCommandLineArguments(line.trim());
+				}
+			} catch (IOException ex)
+			{
+				ex.printStackTrace();
+				throw new ParkingLotException("File IO Exception " + ex.getMessage());
+
+			}
+		} catch (FileNotFoundException e) 
+		{
+			e.printStackTrace();
+			throw new ParkingLotException("File not found " + e.getMessage());
+
+		}
 	}
 }

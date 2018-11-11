@@ -38,7 +38,7 @@ public class ProcessParkingRequest {
 	}
 
 	/**
-	 * Park New Vehicle of given Rgistration Number and Vehicle Color for Granting Ticket
+	 * Park New Vehicle of given Registration Number and Vehicle Color for Granting Ticket
 	 * @param registratioNumber
 	 * @param vehicleColor
 	 */
@@ -201,10 +201,10 @@ public class ProcessParkingRequest {
 		}
 
 		if (slot_number_for_registration_number == 0) {
-			log.info("Not Vehicle for Registration Number  " + carRegistrationNubmer);
+			log.info("No Vehicle for Registration Number  " + carRegistrationNubmer);
 			
 		}
-
+		else	
 		log.info (slot_number_for_registration_number);
 
 	}

@@ -1,0 +1,8 @@
+# Add script to run program here.
+# Complete bin/setup so that after it is
+# run, bin/parking_lot can be used to launch
+# it.
+
+parkingLotFile=$1
+
+java -jar ParkingLotAllocator/parkingAllocator/target/parkingAllocator-1.0-SNAPSHOT-jar-with-dependencies.jar file_inputs.txt

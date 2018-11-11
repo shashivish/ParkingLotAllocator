@@ -22,7 +22,9 @@ public class ParkinglotAllocator
 	public static void main( String[] args ) throws IOException ,ParkingLotException
 	{
 
-		log.info("Welcome to GoJek Parking Lot");	
+		log.info("Welcome to GoJek Parking Lot");
+
+		ProcessCommandLineArguments processCommandLineArgument = new ProcessCommandLineArguments();
 
 		/**
 		 * Check with Interactive or File approach is required to Solve problem. 	
@@ -30,7 +32,7 @@ public class ParkinglotAllocator
 		if (args.length ==0 )
 		{
 
-			ProcessCommandLineArguments processCommandLineArgument = new ProcessCommandLineArguments();
+
 			/**
 			 * Keep interactive mode alive.
 			 */
@@ -41,7 +43,7 @@ public class ParkinglotAllocator
 
 					log.info("Please Enter New Action");
 					BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-                    String inputCommand = bufferRead.readLine();
+					String inputCommand = bufferRead.readLine();
 
 					if(inputCommand.toLowerCase().equals("exit"))
 					{
@@ -50,7 +52,6 @@ public class ParkinglotAllocator
 					}
 					else
 					{
-						log.info(inputCommand);
 						processCommandLineArgument.ProcessCommandLineArguments(inputCommand);
 					}
 				}
@@ -65,7 +66,10 @@ public class ParkinglotAllocator
 		}
 		else
 		{
-
+			/**
+			 * Process Parking Lot Based on File Input
+			 */
+			processCommandLineArgument.commandLineFileParser(args[0]);
 		}
 
 
