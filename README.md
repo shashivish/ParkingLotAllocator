@@ -3,10 +3,6 @@
 --------------------------------
 
 
-Functional Requirement :
-
-//Placeholder
-
 Before we begin with implementation , we will make couple of assumptions for defining boudary for problem.
 
 1. Only Car as Vehical allowed for Parking.
