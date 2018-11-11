@@ -36,3 +36,7 @@ bin/parking_lot
 ```
 bin/parking_lot file_inputs.txt
 ```
+
+### Log Location 
+
+parkingAllocator/parkingLot.log
