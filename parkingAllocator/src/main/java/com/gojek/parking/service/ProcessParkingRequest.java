@@ -9,11 +9,12 @@ import org.apache.log4j.Logger;
 
 import com.gojek.parking.ParkinglotAllocator;
 import com.gojek.parking.doa.Car;
+import com.gojek.parking.exception.ParkingLotException;
 
 public class ProcessParkingRequest {
 
 	final static Logger log = Logger.getLogger(ProcessParkingRequest.class);
-	
+
 	//Creatr Parking Space Object Holder
 	static Map<Integer,Car> PARKINGSPACEHOLDER  = new HashMap<Integer, Car>();
 
@@ -22,7 +23,7 @@ public class ProcessParkingRequest {
 	 * Initialize Empty Parking Area
 	 * @param parkingLotSize
 	 */
-	public void createParkingLot(int parkingLotSize)
+	public void createParkingLot(int parkingLotSize) throws ParkingLotException
 	{
 		/**
 		 * Initialize All Parking Space with Null values
@@ -30,9 +31,9 @@ public class ProcessParkingRequest {
 		for(int parkingSpaceCounter =1 ; parkingSpaceCounter <= parkingLotSize ; parkingSpaceCounter ++)
 		{
 			PARKINGSPACEHOLDER.put(parkingSpaceCounter, null);
-			log.info("Created a parking lot with "+parkingLotSize +" slots");
-
 		}
+		log.info("Created a parking lot with "+parkingLotSize +" slots");
+
 
 	}
 
@@ -49,9 +50,6 @@ public class ProcessParkingRequest {
 		while(parkingItr.hasNext())
 		{
 			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
-
-			System.out.println("Getting Key " + parkingInformation.getKey());
-			System.out.println( "Getting value  " + parkingInformation.getValue());
 
 			if(parkingInformation.getValue()  == null)
 			{
@@ -131,14 +129,87 @@ public class ProcessParkingRequest {
 	public String getRegistrationNumberByColor(String color)
 	{
 
-		return "";
+		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
+		String registration_numbers_for_cars_with_colour = "";
+		while(parkingItr.hasNext())
+		{
+			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
+			if(parkingInformation.getValue() != null)
+			{
+				if (parkingInformation.getValue().getCarColor().toString().equals(color))
+				{
+					registration_numbers_for_cars_with_colour = registration_numbers_for_cars_with_colour + " " + parkingInformation.getValue().getCarRegistrationNumber() + ",";
+				}
+			}
+
+		}
+
+		if (registration_numbers_for_cars_with_colour == "") {
+			log.info("Not Vehicle for Color " + color);
+			return "";
+		}
+
+		return registration_numbers_for_cars_with_colour;
+
+
 	}
 
-	public int getSlotNumberByRegistrationNumber(String carRegistrationNubmer)
+
+	public String getSlotsNumberbyColor(String color)
 	{
-		return 0;
+
+		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
+		String slot_numbers_for_cars_with_colour = "";
+		while(parkingItr.hasNext())
+		{
+			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
+			if(parkingInformation.getValue() != null)
+			{
+				if (parkingInformation.getValue().getCarColor().toString().equals(color))
+				{
+					slot_numbers_for_cars_with_colour = slot_numbers_for_cars_with_colour + " " + parkingInformation.getKey() + ",";
+				}
+			}
+
+		}
+
+		if (slot_numbers_for_cars_with_colour == "") {
+			log.info("Slot not found for Color " + color);
+			return "";
+		}
+
+		return slot_numbers_for_cars_with_colour;
+
 
 	}
+
+	public int  getSlotNumberByRegistrationNumber(String carRegistrationNubmer)
+	{
+		Iterator parkingItr = PARKINGSPACEHOLDER.entrySet().iterator();
+		int slot_number_for_registration_number = 0;
+		while(parkingItr.hasNext())
+		{
+			Entry<Integer , Car > parkingInformation = (Entry<Integer, Car>) parkingItr.next();
+			if(parkingInformation.getValue() != null)
+			{
+				if (parkingInformation.getValue().getCarRegistrationNumber().equals(carRegistrationNubmer))
+				{
+					slot_number_for_registration_number = parkingInformation.getKey();
+				}
+			}
+
+		}
+
+		if (slot_number_for_registration_number == 0) {
+			log.info("Not Vehicle for Registration Number  " + carRegistrationNubmer);
+			return 0;
+		}
+
+		return slot_number_for_registration_number;
+
+	}
+
+
 
 
 
