@@ -1,6 +1,6 @@
-==
 
-Praking Lot Problem :
+# Praking Lot Problem 
+--------------------------------
 
 
 Functional Requirement :
@@ -16,18 +16,21 @@ Before we begin with implementation , we will make couple of assumptions for def
 
 Technical Requirement :
 
-** 1. JDK 1.7 + is installed on server.
-** 2. Maven is present for compilation.
-** 3. Git is used for versioning.
+###  1. JDK 1.7 + is installed on server.
+### 2. Maven is present for compilation.
+### 3. Git is used for versioning.
 
 
 Execution :
 
 // Execute below command for compiling program
 
-setup
- 
+```
+bin/setup
+```
+
 //Execute below steps for triggering parking lot allocator
 
-parking_lot
-
+```
+bin/parking_lot
+```
